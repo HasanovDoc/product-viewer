@@ -1,0 +1,22 @@
+@import "./components/product-card";
+
+* {
+    font-family: Lato;
+}
+
+.header {
+    &__titles {
+        margin-bottom: 24px;
+    }
+
+    &__subtitle {
+        font-size: 20px;
+        color: #787a80;
+    }
+
+    &__title {
+        font-size: 46px;
+        font-weight: 900;
+        color: #1e212c;
+    }
+}
