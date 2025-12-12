@@ -1,22 +1,69 @@
-@import "./components/product-card";
+@use "./base/variables";
+@forward "./components/product-card";
+@import "./base/mixins";
+
 
 * {
     font-family: Lato;
+    margin: 0;
+    padding: 0;
+}
+
+.page__wrapper {
+  max-width: 1920px;
+  margin: 0 auto;
+
+  @include fluid(padding-left, 345px, 20px);
+  @include fluid(padding-right, 345px, 20px);
+  @include fluid(padding-top, 44px, 20px);
+  @include fluid(padding-bottom, 86px, 20px);
 }
 
 .header {
     &__titles {
-        margin-bottom: 24px;
+        margin-bottom: 85px;
     }
 
     &__subtitle {
-        font-size: 20px;
-        color: #787a80;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 150%;
+        letter-spacing: 1px;
+        text-transform: uppercase;
     }
 
     &__title {
-        font-size: 46px;
         font-weight: 900;
-        color: #1e212c;
+        font-size: 46px;
+        line-height: 130%;
+        letter-spacing: 0%;
+    }
+}
+
+.products__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.categories {
+    margin-bottom: 60px;
+    &__list {
+        display: flex;
+        @include fluid(gap, 12px, 1px);
+    }
+}
+
+.filter-btn {
+    position: relative;
+
+    @include fluid(padding-left, 20px, 0px);
+    @include fluid(padding-right, 20px, 0px);
+    @include fluid(padding-top, 10px, 0px);
+    @include fluid(padding-bottom, 10px, 0px);
+
+    &__counter {
+        position: absolute;
+        right: 0;
+        top: 0;
     }
 }
