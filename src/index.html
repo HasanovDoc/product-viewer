@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our online courses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css" />
+</head>
+
+<body class="page">
+    <div class="page__wrapper">
+        <header class="header">
+            <div class="header__titles">
+                <h6 class="header__subtitle">Enjoy your studying!</h6>
+                <h1 class="header__title">Our online courses</h1>
+            </div>
+        </header>
+
+        <!-- Категории -->
+        <section class="categories">
+            <div class="categories__list"></div>
+        </section>
+
+        <!-- Grid карточек -->
+        <section class="products">
+            <div id="products-grid" class="products__grid"></div>
+        </section>
+
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+    <script src="js/models/product.js"></script>
+    <script type="module" src="js/components/product-card.js"></script>
+</body>
+</html>
