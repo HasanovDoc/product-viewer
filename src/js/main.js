@@ -16,7 +16,7 @@ class ProductGrid {
 
     render() {
         this.container.innerHTML = '';
-        
+
         this.filteredProducts.forEach(productData => {
             const product = new Product(productData);
             const card = new ProductCard(product, {
@@ -24,44 +24,60 @@ class ProductGrid {
                 showAuthor: true,
                 interactive: true
             });
-            
+
             card.getElement().addEventListener('categoryFilter', (e) => {
                 this.filterByCategory(e.detail.category);
             });
-            
+
             this.container.appendChild(card.getElement());
         });
     }
 
     setupFiltering() {
         const categories = [...new Set(this.products.map(p => p.category))];
-        
+        const categoryCount = this.products.reduce((acc, item) => { // Сделать получение количества категорий в product-card
+            acc[item.category] = (acc[item.category] || 0) + 1;
+            return acc;
+        }, {});
+
         const filterContainer = document.querySelector('.categories__list');
         if (filterContainer) {
             filterContainer.innerHTML = `
-                <button class="filter-btn active" data-category="all">All</button>
-                ${categories.map(cat => 
-                    `<button class="filter-btn" data-category="${cat}">${cat}</button>`
-                ).join('')}
+                <a class="filter__btn filter__btn--active" data-category="all">
+                    <div class="filter__btn-inner">
+                        All
+                        <span class="filter__btn-counter">${this.products.length}</span>
+                    </div>
+                </a>
+                ${categories.map(cat =>
+                `<a class="filter__btn" data-category="${cat}">
+                        <div class="filter__btn-inner">
+                            ${cat}
+                            <span class="filter__btn-counter">${categoryCount[cat] || 0}</span>
+                        </div>
+                    </a>`
+            ).join('')}
             `;
-            
+
             filterContainer.addEventListener('click', (e) => {
-                if (e.target.classList.contains('filter-btn')) {
-                    const category = e.target.dataset.category;
-                    this.filterByCategory(category);
-                    
-                    filterContainer.querySelectorAll('.filter-btn').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    e.target.classList.add('active');
-                }
+                const btn = e.target.closest('.filter__btn');
+                if (!btn) return;
+
+                const category = btn.dataset.category;
+                this.filterByCategory(category);
+
+                filterContainer.querySelectorAll('.filter__btn').forEach(b => {
+                    b.classList.remove('filter__btn--active');
+                });
+
+                btn.classList.add('filter__btn--active');
             });
         }
     }
 
     filterByCategory(category) {
         this.currentCategory = category;
-        
+
         if (category === 'all') {
             this.filteredProducts = [...this.products];
         } else {
@@ -69,7 +85,7 @@ class ProductGrid {
                 product => product.category === category
             );
         }
-        
+
         this.render();
     }
 }
@@ -147,7 +163,7 @@ const sampleProducts = [
         author: "by Cody Fisher",
         category: "Design",
     }
-    
+
 ];
 
 document.addEventListener('DOMContentLoaded', () => {

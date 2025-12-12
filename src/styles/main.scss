@@ -10,17 +10,18 @@
 }
 
 .page__wrapper {
-  max-width: 1920px;
-  margin: 0 auto;
+    max-width: 1920px;
+    margin: 0 auto;
 
-  @include fluid(padding-left, 345px, 20px);
-  @include fluid(padding-right, 345px, 20px);
-  @include fluid(padding-top, 44px, 20px);
-  @include fluid(padding-bottom, 86px, 20px);
+    @include fluid(padding-left, 345px, 20px);
+    @include fluid(padding-right, 345px, 20px);
+    @include fluid(padding-top, 44px, 20px);
+    @include fluid(padding-bottom, 86px, 20px);
 }
 
 .header {
     &__titles {
+        text-align: center;
         margin-bottom: 85px;
     }
 
@@ -43,27 +44,47 @@
 .products__grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    @include fluid(grid-column-gap, 30px, 1px);
+    @include fluid(grid-row-gap, 30px, 1px);
 }
 
 .categories {
     margin-bottom: 60px;
+
     &__list {
         display: flex;
         @include fluid(gap, 12px, 1px);
     }
 }
 
-.filter-btn {
-    position: relative;
+.filter {
+    &__btn {
+        color: variables.$text-gray600;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 160%;
+        letter-spacing: 0%;
+        @include fluid(padding-left, 20px, 0px);
+        @include fluid(padding-right, 20px, 0px);
+        @include fluid(padding-top, 10px, 0px);
+        @include fluid(padding-bottom, 10px, 0px);
 
-    @include fluid(padding-left, 20px, 0px);
-    @include fluid(padding-right, 20px, 0px);
-    @include fluid(padding-top, 10px, 0px);
-    @include fluid(padding-bottom, 10px, 0px);
+        &--active {
+            border: 1px solid #FF3F3A;
+            border-radius: 4px;
+            color: #FF3F3A;
+        }
+    }
 
-    &__counter {
-        position: absolute;
-        right: 0;
-        top: 0;
+    &__btn-inner {
+        display: flex;
+        @include fluid(gap, 4px, 1px);
+        @include fluid(height, 26px, 6px);
+    }
+
+    &__btn-counter {
+        font-weight: 900;
+        font-size: 10px;
+        line-height: 150%;
     }
 }
