@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "sass src/styles/main.scss src/styles/main.css --watch",
-    "build": "sass src/styles/main.scss dist/styles/main.css --style=compressed && cp src/index.html dist/index.html && cp -r src/js dist/js"
+    "build": "sass src/styles/main.scss public/styles/main.css --style=compressed && cp src/index.html public/index.html && cp -r src/js public/js"
   },
   "author": "",
   "license": "ISC",
